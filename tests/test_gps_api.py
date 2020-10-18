@@ -9,8 +9,6 @@ from click.testing import CliRunner
 from gps_api import gps_api
 from gps_api import cli
 
-TEST_GPS = gps_api.GPS("/dev/ttyAMA0")
-
 @pytest.fixture
 def response():
     """Sample pytest fixture.
@@ -36,6 +34,3 @@ def test_command_line_interface():
     help_result = runner.invoke(cli.main, ['--help'])
     assert help_result.exit_code == 0
     assert '--help  Show this message and exit.' in help_result.output
-
-def test_get_latitude():
-    pass 
