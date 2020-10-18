@@ -27,6 +27,9 @@ class Position:
     def get_altitude(self):
         return self.altitude
 
+    def get_current_time():
+        return self.time
+
     def get_current_location(self):
         location = (self.latitude, self.longitude)
         return location

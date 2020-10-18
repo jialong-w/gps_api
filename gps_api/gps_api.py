@@ -48,7 +48,11 @@ class GPS:
         return self.position.get_current_location()
 
     def get_current_time(self):
-        pass
+        clean_string()
+        while "GPGGA" not in self.nmea_msg:
+            self.nmea_msg = ser.readline().decode("utf-8", "ignore")
+        self.position.update(self.nmea_msg)
+        return self.position.get_current_time()
 
     def set_distination(self, latitude, longitude):
         self.distination = (latitude, longitude)
