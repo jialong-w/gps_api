@@ -1,14 +1,14 @@
 """Main module."""
 import serial
 import haversine
-from position import Position
+from . import position
 
 class GPS:
     def __init__(self, port):
         self.port = port
         self.ser = serial.Serial(port, baudrate=9600, timeout=0.5)
         self.nmea_msg = ""
-        self.position = Position()
+        self.position = position.Position()
 
     def setup(self):
         pass
