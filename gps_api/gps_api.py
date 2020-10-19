@@ -22,35 +22,35 @@ class GPS:
     def get_latitude(self):
         self.clean_string()
         while "GPGGA" not in self.nmea_msg:
-            self.nmea_msg = ser.readline().decode("utf-8", "ignore")
+            self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
         self.position.update(self.nmea_msg)
         return self.position.get_latitude()
 
     def get_longitude(self):
         self.clean_string()
         while "GPGGA" not in self.nmea_msg:
-            self.nmea_msg = ser.readline().decode("utf-8", "ignore")
+            self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
         self.position.update(self.nmea_msg)
         return self.position.get_longitude()
 
     def get_altitude(self):
         self.clean_string()
         while "GPGGA" not in self.nmea_msg:
-            self.nmea_msg = ser.readline().decode("utf-8", "ignore")
+            self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
         self.position.update(self.nmea_msg)
         return self.position.get_altitude()
 
     def get_current_location(self):
         self.clean_string()
         while "GPGGA" not in self.nmea_msg:
-            self.nmea_msg = ser.readline().decode("utf-8", "ignore")
+            self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
         self.position.update(self.nmea_msg)
         return self.position.get_current_location()
 
     def get_current_time(self):
         self.clean_string()
         while "GPGGA" not in self.nmea_msg:
-            self.nmea_msg = ser.readline().decode("utf-8", "ignore")
+            self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
         self.position.update(self.nmea_msg)
         return self.position.get_current_time()
 
