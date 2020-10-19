@@ -9,7 +9,6 @@ from click.testing import CliRunner
 from gps_api import gps_api
 from gps_api import cli
 
-
 @pytest.fixture
 def response():
     """Sample pytest fixture.
