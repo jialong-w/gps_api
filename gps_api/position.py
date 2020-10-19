@@ -1,14 +1,17 @@
-# position.py
-
 import pynmea2
-import serial
 
 class Position:
     """ position class, used to store latitude, longitude and altitude.
         get_latitude, get_longitude and get_current_location methods
     """
 
-    def __init__(self, nmea_msg):
+    def __init__(self):
+        self.latitude = ""
+        self.longitude = ""
+        self.altitude = ""
+        self.location = ""
+
+    def update(self, nmea_msg):
         if "GPGGA" in nmea_msg:
             msg = pynmea2.parse(nmea_msg)
             self.latitude = msg.latitude
@@ -24,7 +27,9 @@ class Position:
     def get_altitude(self):
         return self.altitude
 
+    def get_current_time():
+        return self.time
+
     def get_current_location(self):
-        location = ""
-        location = location + str(self.latitude) + " N " + str(self.longitude) + " W"
+        location = (self.latitude, self.longitude)
         return location
