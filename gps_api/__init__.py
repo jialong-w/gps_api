@@ -2,6 +2,6 @@
 
 __author__ = """Jialong Weng, Veronique Reagon"""
 __email__ = 'wngjia001@myuct.ac.za, rgnver001@myuct.ac.za'
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 
 from .gps_api import GPS
