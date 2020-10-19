@@ -17,21 +17,20 @@ setup_requirements = ['pytest-runner', ]
 test_requirements = ['pytest>=3', ]
 
 setup(
-    author="Jialong Weng",
-    author_email='wngjia001@myuct.ac.za',
-    python_requires='>=3.5',
+    author="Jialong Weng, Veronique Reagon",
+    author_email='wngjia001@myuct.ac.za, rgnver001@myuct.ac.za',
+    python_requires='>=3.6',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    description="Python Boilerplate contains all the boilerplate you need to create a Python package.",
+    description="University of Cape Town EEE3097S 2020 Design Project, API for GPS module",
     entry_points={
         'console_scripts': [
             'gps_api=gps_api.cli:main',
