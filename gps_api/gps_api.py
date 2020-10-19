@@ -59,8 +59,7 @@ class GPS:
 
     def get_distance(self, latitude, longitude):
         self.set_distination(latitude, longitude)
-        # self.current_position = ()
-        distance = haversine(self.current_position, self.distination)
+        distance = haversine(self.get_current_location(), self.distination)
         pass
 
     def get_speed(self):
