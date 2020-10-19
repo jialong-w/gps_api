@@ -20,35 +20,35 @@ class GPS:
         self.nmea_msg = ""
 
     def get_latitude(self):
-        clean_string()
+        self.clean_string()
         while "GPGGA" not in self.nmea_msg:
             self.nmea_msg = ser.readline().decode("utf-8", "ignore")
         self.position.update(self.nmea_msg)
         return self.position.get_latitude()
 
     def get_longitude(self):
-        clean_string()
+        self.clean_string()
         while "GPGGA" not in self.nmea_msg:
             self.nmea_msg = ser.readline().decode("utf-8", "ignore")
         self.position.update(self.nmea_msg)
         return self.position.get_longitude()
 
     def get_altitude(self):
-        clean_string()
+        self.clean_string()
         while "GPGGA" not in self.nmea_msg:
             self.nmea_msg = ser.readline().decode("utf-8", "ignore")
         self.position.update(self.nmea_msg)
         return self.position.get_altitude()
 
     def get_current_location(self):
-        clean_string()
+        self.clean_string()
         while "GPGGA" not in self.nmea_msg:
             self.nmea_msg = ser.readline().decode("utf-8", "ignore")
         self.position.update(self.nmea_msg)
         return self.position.get_current_location()
 
     def get_current_time(self):
-        clean_string()
+        self.clean_string()
         while "GPGGA" not in self.nmea_msg:
             self.nmea_msg = ser.readline().decode("utf-8", "ignore")
         self.position.update(self.nmea_msg)
@@ -59,8 +59,8 @@ class GPS:
 
     def get_distance(self, latitude, longitude):
         self.set_distination(latitude, longitude)
-        distance = haversine(self.get_current_location(), self.distination)
-        pass
+        self.distance = haversine(self.get_current_location(), self.distination)
+        return self.distance
 
     def get_speed(self):
         pass
