@@ -16,7 +16,7 @@ GPS API
 
 
 
-Python Boilerplate contains all the boilerplate you need to create a Python package.
+UNIVERSITY OF CAPE TOWN, EEE3097S 2020, Engineering Design: ECE, Design Project: API for Grove-GPS (Air530).
 
 
 * Free software: MIT license
