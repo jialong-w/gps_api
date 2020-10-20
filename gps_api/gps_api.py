@@ -7,14 +7,12 @@ class GPS:
     def __init__(self, port):
         self.port = port
         self.ser = serial.Serial(port, baudrate=9600, timeout=0.5)
+        self.ser.write("\$PMTK314,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n")
         self.nmea_msg = ""
         self.position = position.Position()
 
-    def setup(self):
-        pass
-
-    def restart(self):
-        pass
+    def factory_mode(self):
+        
 
     def clean_string(self):
         self.nmea_msg = ""
