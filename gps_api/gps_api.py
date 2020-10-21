@@ -1,13 +1,20 @@
 """Main module."""
 import serial
+import serial.tools.list_ports
 from haversine import haversine
 from . import position
 
 class GPS:
     def __init__(self, port):
         self.port = port
-        # connect serial port
-        self.ser = serial.Serial(port, baudrate=9600, timeout=0.5)
+        # list com ports
+        ports = list(serial.tools.list_ports.comports())
+        for p in ports:
+            # if port in listed com ports
+            if self.port in p:
+                # connect serial port
+                self.ser = serial.Serial(port, baudrate=9600, timeout=0.5)
+            else: raise Exception('Invalid port')
         # change NMEA message type and frequency:
         # set GLL, RMC, VTG and GGA output frequency to be outputting once every position fix
         self.ser.write(b'\$PMTK314,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n')
