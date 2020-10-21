@@ -22,7 +22,7 @@ class GPS:
         self.nmea_msg = ""
         self.position = position.Position()
         self.distance = 0
-        self.start_point = None
+        self.another_location = None
 
     def reboot(self):
         '''
@@ -101,19 +101,19 @@ class GPS:
         self.position.update(self.nmea_msg)
         return self.position.get_date()
 
-    def set_start_point(self, latitude, longitude):
+    def set_another_location(self, latitude, longitude):
         '''
         set the distination variable
         (latitude, longitude)
         '''
-        self.start_point = (latitude, longitude)
+        self.another_location = (latitude, longitude)
 
     def get_distance(self, latitude, longitude):
         '''
         return distance between current location and given latitude and longitude as starting point
         '''
-        self.set_start_point(latitude, longitude)
-        distance = haversine(self.get_current_location(), self.start_point)
+        self.set_another_location(latitude, longitude)
+        distance = haversine(self.get_current_location(), self.another_location)
         return distance
 
     def get_speed(self):
@@ -126,56 +126,34 @@ class GPS:
         self.position.update(self.nmea_msg)
         return self.position.get_speed()
 
-    def get_time_of_arrival(self):
-        '''
-        calculates travel_time in hours
-        '''
-        time = float(self.distance)/float(self.get_speed())*3600
-        day = time // (24 * 3600)
-        time = time % (24 * 3600)
-        hour = time // 3600
-        time %= 3600
-        minutes = time // 60
-        time %= 60
-        seconds = time
-
-        #gettings arrival time and splitting into hours, minutes and seconds
-        current_time = str(self.get_UTC_time())
-        c_hour = int(current_time[0,2])
-        c_minutes =  int(current_time[2,4])
-        c_seconds = int(current_time[4,6])
-
-        #calculating aarival times
-        a_hours = c_hour+hour
-        a_minutes = c_minutes+minutes
-        a_seconds = c_seconds+seconds
-
-        arrival_time=("%d:%d:%d" % (a_hours, a_minutes, a_seconds))
-        return arrival_time
-
     def get_time_of_arrival(self, latitude, longitude):
         '''
         calculates travel_time in hours
         '''
-        time = float(self.get_distance(latitude,longitude))/float(self.get_speed())*3600
-        day = time // (24 * 3600)
-        time = time % (24 * 3600)
-        hour = time // 3600
-        time %= 3600
-        minutes = time // 60
-        time %= 60
-        seconds = time
+        speed = self.get_speed()
+        if speed == 0.0:
+            message = "You are stationary, time of arrival unknown"
+            return message
+        else:
+            time = float(self.get_distance(latitude,longitude))/float(speed)*3600
+            day = time // (24 * 3600)
+            time = time % (24 * 3600)
+            hour = time // 3600
+            time %= 3600
+            minutes = time // 60
+            time %= 60
+            seconds = time
 
-        #gettings arrival time and splitting into hours, minutes and seconds
-        current_time = str(self.get_UTC_time())
-        c_hour = int(current_time[0,2])
-        c_minutes =  int(current_time[2,4])
-        c_seconds = int(current_time[4,6])
+            # gettings arrival time and splitting into hours, minutes and seconds
+            current_time = str(self.get_UTC_time())
+            c_hour = int(current_time[0,2])
+            c_minutes =  int(current_time[2,4])
+            c_seconds = int(current_time[4,6])
 
-        #calculating arival times
-        a_hours = c_hour+hour
-        a_minutes = c_minutes+minutes
-        a_seconds = c_seconds+seconds
+            # calculating arival times
+            a_hours = c_hour+hour
+            a_minutes = c_minutes+minutes
+            a_seconds = c_seconds+seconds
 
-        arrival_time=("%d:%d:%d" % (a_hours, a_minutes, a_seconds))
-        return arrival_time
+            arrival_time = ("%d:%d:%d" % (a_hours, a_minutes, a_seconds))
+            return arrival_time
