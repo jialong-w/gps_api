@@ -10,7 +10,7 @@ class GPS:
         self.ser = serial.Serial(port, baudrate=9600, timeout=0.5)
         # change NMEA message type and frequency:
         # set GLL, RMC, VTG and GGA output frequency to be outputting once every position fix
-        self.ser.write("\$PMTK314,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n")
+        self.ser.write(b'\$PMTK314,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28\r\n')
         # initialisation of variables
         self.nmea_msg = ""
         self.position = position.Position()
