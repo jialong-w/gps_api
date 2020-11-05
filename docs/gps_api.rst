@@ -1,4 +1,4 @@
-GPS API Package
+GPS API package
 ================
 
 Submodules
