@@ -30,7 +30,8 @@ class GPS:
         FULL COLD START: time, position, almanacs and ephemeris data will be redownloaded
                          system/user configurations will be cleared
                          process will take approximately 8 minutes, use with patience
-        instantiate GPS class after reboot to apply the configuration of NMEA message type and frequency
+        instantiate GPS class after reboot to apply the
+        configuration of NMEA message type and frequency
         '''
         self.ser.write("\$PMTK104*37\r\n")
 
@@ -110,7 +111,8 @@ class GPS:
 
     def get_distance(self, latitude, longitude):
         '''
-        return distance between current location and given latitude and longitude as starting point
+        return distance between current location and
+        given latitude and longitude as starting point
         '''
         self.set_another_location(latitude, longitude)
         distance = haversine(self.get_current_location(), self.another_location)
