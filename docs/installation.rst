@@ -12,7 +12,7 @@ To install GPS API, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install gps_api
+    $ pip3 install gps_api
 
 This is the preferred method to install GPS API, as it will always install the most recent stable release.
 
@@ -44,7 +44,7 @@ Once you have a copy of the source, you can install it with:
 
 .. code-block:: console
 
-    $ python setup.py install
+    $ python3 setup.py install
 
 
 .. _Github repo: https://github.com/jialong-w/gps_api
