@@ -47,8 +47,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'GPS API'
-copyright = "2020, Jialong Weng"
-author = "Jialong Weng"
+copyright = "2020, Jialong Weng & Veronique Reagon"
+author = "Jialong Weng, Veronique Reagon"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -129,7 +129,7 @@ latex_elements = {
 latex_documents = [
     (master_doc, 'gps_api.tex',
      'GPS API Documentation',
-     'Jialong Weng', 'manual'),
+     'Jialong Weng, Veronique Reagon', 'manual'),
 ]
 
 
@@ -154,9 +154,6 @@ texinfo_documents = [
      'GPS API Documentation',
      author,
      'gps_api',
-     'One line description of project.',
+     'UNIVERSITY OF CAPE TOWN, EEE3097S 2020, Engineering Design: ECE, Design Project: API for Grove-GPS (Air530).',
      'Miscellaneous'),
 ]
-
-
-
