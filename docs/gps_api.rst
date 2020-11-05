@@ -1,4 +1,4 @@
-gps\_api package
+Gps\_api Package
 ================
 
 Submodules
