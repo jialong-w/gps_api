@@ -17,7 +17,8 @@ GPS API
 
 
 UNIVERSITY OF CAPE TOWN, EEE3097S 2020, Engineering Design: ECE, Design Project: API for Grove-GPS (Air530).
-
+GPS API assists in extracting data from a GPS module.
+Libraries interfaced by this API include: pynmea2, pyserial and haversine.
 
 * Free software: MIT license
 * Documentation: https://gps-api.readthedocs.io.
@@ -26,7 +27,17 @@ UNIVERSITY OF CAPE TOWN, EEE3097S 2020, Engineering Design: ECE, Design Project:
 Features
 --------
 
-* TODO
+Functions which GPS API offers:
+  * get latitude
+  * get longitude
+  * get altitude
+  * get current location
+  * get UTC time
+  * get UTC date
+  * get distance between current location and another location
+  * get current ground speed
+  * get estimated time of arrival to a destination
+  * reboot the GPS module
 
 Credits
 -------
