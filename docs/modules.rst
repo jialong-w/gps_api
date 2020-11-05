@@ -1,4 +1,4 @@
-gps_api
+Modules
 =======
 
 .. toctree::
