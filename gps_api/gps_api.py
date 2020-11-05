@@ -25,26 +25,29 @@ class GPS:
         self.another_location = None
 
     def reboot(self):
-        '''
+        """
         reboot involves a full cold start
-        FULL COLD START: time, position, almanacs and ephemeris data will be redownloaded
-                         system/user configurations will be cleared
-                         process will take approximately 8 minutes, use with patience
+            FULL COLD START:
+            time, position, almanacs and ephemeris data will be redownloaded
+            system/user configurations will be cleared
+            process will take approximately 8 minutes, use with patience
         instantiate GPS class after reboot to apply the
         configuration of NMEA message type and frequency
-        '''
+        """
         self.ser.write("\$PMTK104*37\r\n")
 
     def clean_string(self):
-        '''
+        """
         clear data held in nmea_msg
-        '''
+        """
         self.nmea_msg = ""
 
     def get_latitude(self):
-        '''
-        return latitude data from latest nmea message
-        '''
+        """
+        get latitude data from latest nmea message
+
+        :return: latitude data at current position
+        """
         self.clean_string()
         while "GPGGA" not in self.nmea_msg:
             self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
@@ -52,9 +55,11 @@ class GPS:
         return self.position.get_latitude()
 
     def get_longitude(self):
-        '''
-        return longitude data from latest nmea message
-        '''
+        """
+        get lonitude data from latest nmea message
+
+        :return: longitude data at current position
+        """
         self.clean_string()
         while "GPGGA" not in self.nmea_msg:
             self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
@@ -62,9 +67,11 @@ class GPS:
         return self.position.get_longitude()
 
     def get_altitude(self):
-        '''
-        return altitude data from latest nmea message
-        '''
+        """
+        get altitude data from latest nmea message
+
+        :return: altitude data at current position
+        """
         self.clean_string()
         while "GPGGA" not in self.nmea_msg:
             self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
@@ -72,10 +79,11 @@ class GPS:
         return self.position.get_altitude()
 
     def get_current_location(self):
-        '''
-        return current location data from latest nmea message
-        (latitude, longitude)
-        '''
+        """
+        get current location data from
+
+        :return: current location data in the form (latitude, longitude)
+        """
         self.clean_string()
         while "GPGGA" not in self.nmea_msg:
             self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
@@ -83,9 +91,11 @@ class GPS:
         return self.position.get_current_location()
 
     def get_UTC_time(self):
-        '''
-        return UTC time of current location from latest nmea message
-        '''
+        """
+        get UTC time data from latest nmea message
+
+        :return: UTC time at current position
+        """
         self.clean_string()
         while "GPRMC" not in self.nmea_msg:
             self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
@@ -93,9 +103,11 @@ class GPS:
         return self.position.get_UTC_time()
 
     def get_date(self):
-        '''
-        return date of current location from latest nmea message
-        '''
+        """
+        get UTC date data from latest nmea message
+
+        :return: UTC date at current position
+        """
         self.clean_string()
         while "GPRMC" not in self.nmea_msg:
             self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
@@ -103,25 +115,32 @@ class GPS:
         return self.position.get_date()
 
     def set_another_location(self, latitude, longitude):
-        '''
-        set the distination variable
-        (latitude, longitude)
-        '''
+        """
+        set a location
+
+        :param latitude: another location's latitude
+        :param longitude: another location's longitude
+        """
         self.another_location = (latitude, longitude)
 
     def get_distance(self, latitude, longitude):
-        '''
-        return distance between current location and
-        given latitude and longitude as starting point
-        '''
+        """
+        get the distance to another location
+
+        :param latitude: another location's latitude
+        :param longitude: another location's longitude
+        :return: distance to the other position at (latitude, longitude)
+        """
         self.set_another_location(latitude, longitude)
         distance = haversine(self.get_current_location(), self.another_location)
         return distance
 
     def get_speed(self):
-        '''
-        return current speed over ground in km/h
-        '''
+        """
+        get speed data from latest nmea message
+
+        :return: current speed in km/h
+        """
         self.clean_string()
         while "GPVTG" not in self.nmea_msg:
             self.nmea_msg = self.ser.readline().decode("utf-8", "ignore")
@@ -129,9 +148,13 @@ class GPS:
         return self.position.get_speed()
 
     def get_time_of_arrival(self, latitude, longitude):
-        '''
-        calculates travel_time in hours
-        '''
+        """
+        get time of arrival to destination (latitude, longitude)
+
+        :param latitude: destination's latitude
+        :param longitude: destination's longitude
+        :return: estimated time of arrival to the destination
+        """
         speed = self.get_speed()
         if speed == 0.0:
             message = "You are stationary, time of arrival unknown"
