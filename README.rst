@@ -17,7 +17,9 @@ GPS API
 
 
 UNIVERSITY OF CAPE TOWN, EEE3097S 2020, Engineering Design: ECE, Design Project: API for Grove-GPS (Air530).
+
 GPS API assists in extracting data from a GPS module.
+
 Libraries interfaced by this API include: pynmea2, pyserial and haversine.
 
 * Free software: MIT license
