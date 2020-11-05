@@ -1,4 +1,8 @@
-"""Main module."""
+"""
+GPS API instatiates an object of GPS class with a port name on the device
+to which the GPS module is attached. GPS object provides functions to easily
+extract data from the NMEA messages received by the GPS module.
+"""
 import serial
 import serial.tools.list_ports
 from haversine import haversine
