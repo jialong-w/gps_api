@@ -8,7 +8,7 @@ coverage==5.3
 Sphinx==3.3.0
 twine==3.2.0
 Click==7.1.2
-pytest==6.1.2
+pytest==7.1.0
 pytest-runner==5.2
 pyserial==3.4
 pynmea2==1.15.0
